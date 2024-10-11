@@ -9,8 +9,8 @@ echo_step() {
 }
 
 # Backup file details
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-BACKUP_FILE="${DUMP_NAME}${TIMESTAMP}.sql"
+TIMESTAMP=$(date +%Y%m%d)
+BACKUP_FILE="${DUMP_NAME}_${TIMESTAMP}.sql"
 
 echo_step "Starting database backup process"
 
