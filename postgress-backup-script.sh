@@ -16,7 +16,7 @@ echo_step "Starting database backup process"
 
 # Create backup
 echo_step "Creating database dump"
-PGPASSWORD=${DB_PASSWORD} pg_dump -h ${DB_HOST} -U ${DB_USER} -p ${DB_PORT} -d ${DB_NAME} -N cron > ${BACKUP_FILE}.sql
+PGPASSWORD=${DB_PASSWORD} pg_dump -h ${DB_HOST} -U ${DB_USER} -p ${DB_PORT} -d ${DB_NAME} -N cron --no-owner > ${BACKUP_FILE}.sql
 
 # Upload to S3
 echo_step "Zipping backup"
