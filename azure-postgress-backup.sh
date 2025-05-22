@@ -28,8 +28,8 @@ az storage blob upload \
     --account-name "${AZURE_STORAGE_ACCOUNT}" \
     --account-key "${AZURE_STORAGE_KEY}" \
     --container-name "${AZURE_STORAGE_CONTAINER}" \
-    --file "${BACKUP_FILE}" \
-    --name "${BACKUP_FILE}" \
+    --file "${BACKUP_FILE}.zip" \
+    --name "${BACKUP_FILE}.zip" \
     --overwrite
 
 if [[ $? -eq 0 ]]; then
@@ -40,6 +40,10 @@ else
 fi
 
 echo "Backup and upload completed successfully!"
+
+# Clean up local files
+echo_step "Cleaning up local backup file"
+rm ${BACKUP_FILE}.zip
 
 # Keep only the 3 most recent backups
 echo "Checking for old backups to delete (keeping only the 3 most recent)..."
