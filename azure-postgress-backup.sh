@@ -10,7 +10,7 @@ echo_step() {
 
 # Backup file details
 TIMESTAMP=$(date +%Y%m%d)
-BACKUP_FILE="${DUMP_NAME}_${TIMESTAMP}"
+BACKUP_FILE="${ENV}_${DUMP_NAME}_${TIMESTAMP}"
 
 echo_step "Starting database backup process"
 
@@ -27,7 +27,7 @@ echo "Uploading ${BACKUP_FILE} to Azure Blob Storage..."
 az storage blob upload \
     --account-name "${AZURE_STORAGE_ACCOUNT}" \
     --account-key "${AZURE_STORAGE_KEY}" \
-    --container-name "${AZURE_STORAGE_CONTAINER}" \
+    --container-name "${AZURE_STORAGE_CONTAINER}/${ENV}" \
     --file "${BACKUP_FILE}.zip" \
     --name "${BACKUP_FILE}.zip" \
     --overwrite
